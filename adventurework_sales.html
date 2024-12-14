@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+  <link href="./image-slider.css" rel="stylesheet"></head>
+  <script type="text/javascript" src="./image-slider.js"></script>
+
+  <title>AdventureWorks Sales</title>  
+  <style>
+    .image-container img{
+      display: inline-block;
+      margin: 10px;
+      width: 500px;
+      flex-direction: column; /* Stack the image and the caption vertically */
+      justify-content: center; /* Vertically center the image */
+      align-items: center; /* Horizontally center the image */
+      cursor: pointer;
+    }
+    .modal-content p{
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+    #imageModal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding-top: 150px;
+    }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Styling for the SQL code block */
+    .sql-code-block {
+      background-color: #f4f4f4; /* Light grey background */
+      border: 1px solid #ccc; /* Light border around the code block */
+      padding: 5px; /* Padding around the content */
+      font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
+      white-space: pre-wrap; /* Wrap lines to avoid horizontal scrolling */
+      word-wrap: break-word; /* Break long words to fit the container */
+      color: #333; /* Darker text for better readability */
+      margin-top: 5px; /* Margin on top of the block */
+      border-radius: 5px; /* Rounded corners */
+      overflow-x: auto; /* Allow horizontal scrolling if code is too wide */
+    }
+
+    .container-hover{
+      width: 90%;
+      padding: 20px;
+      margin: 100px auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    .box{
+      width: 250px;
+      margin: 0 10px;
+      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+    img{
+      display: block;
+      width: 100%;
+      border-radius: 5px;
+    }
+    .box:hover{
+      transform: scale(1.3);
+      z-index: 2;
+    }
+
+     /* Reset some default styles for headers */
+     h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+        }
+
+        /* Optional: Set a specific font size and weight for headers */
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.25em;
+            font-weight: bold;
+        }
+
+        /* Additional styling for the page */
+        body {
+            font-family: 'Verdana', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        /* Bold important words */
+        strong {
+            font-weight: bold;
+        }
+
+        /* Specific styling for the content area */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for lists */
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+  </style>
+
+<link href="./main.3f6952e4.css" rel="stylesheet"></head>
+
+<body class="">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+
+
+
+<!-- Add your content of header -->
+<header>
+  
+  <nav class="navbar  navbar-fixed-top navbar-default">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./works.html" title="">02 : Projects</a></li>
+          <li><a href="./about.html" title="">03 : About me</a></li>
+          <!-- <li><a href="./contact.html" title="">04 : Contact</a></li>
+          <li><a href="./components.html" title="">05 : Components</a></li> -->
+        </ul>
+
+
+          <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
+            <li><a href="./adventurework_sales.html" title="" class="active">001</a></li>
+            <li><a href="./index.html" title="">002</a></li>
+            <li><a href="./index.html" title="">003</a></li>
+            <li><a href="./index.html" title="">004</a></li>
+            <li><a href="./index.html" title="">005</a></li>
+            <li><a href="./index.html" title="">006</a></li>
+          </ul>
+
+
+      </div> 
+    </div>
+  </nav>
+</header>
+
+  <div class="section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <img src="./assets/images/work001-01.jpg" class="img-responsive" alt="">
+          <div class="card-container">
+            <div class="text-center">
+              <h1 class="h3">001 : AdventureWorks Sales Project</h1>
+            </div>
+            <p style="font-size: 120%;">The AdventureWorks Sales Power BI report analyzes sales data over the past two years across various product categories. It provides insights into sales trends, top-performing products, and city-level performance, helping identify growth opportunities. The report uses interactive visualizations, filters, and KPIs to deliver actionable insights. Data cleaning and transformation were applied to ensure accuracy and consistency for business decision-making.</p>
+
+            <div class="row"  >
+              <!-- Thumbnail images that are clickable -->
+              <div class="col-xs-12 col-md-6 image-container" >
+                <img src="./assets/images/work1/product_sql.png"  height="400px" width="400px" class="img-responsive" alt="Click to view full image" onclick="showModal(this)">
+                <p style="text-align: center; background-color: black;opacity: 80%;color: #f1f1f1;"><strong>Query For Product</strong></p>
+              </div>
+              <div class="col-xs-12 col-md-6 image-container">
+                <img src="./assets/images/work1/customer_sql.png" height="400px" width="400px" class="img-responsive" alt="Click to view full image" onclick="showModal(this)">
+                <p style="text-align: center;background-color: black;opacity: 80%;color: #f1f1f1;"><strong>Query For Customer</strong></p>
+              </div>
+              <div class="col-xs-12 col-md-6 image-container">
+                <img src="./assets/images/work1/calender_sql.png" height="400px" width="400px" class="img-responsive" alt="Click to view full image" onclick="showModal(this)">
+                <p style="text-align: center;background-color: black;opacity: 80%;color: #f1f1f1;"><strong>Query For Calender</strong></p>
+              </div>
+              <div class="col-xs-12 col-md-6 image-container">
+                <img src="./assets/images/work1/sales_sql.png" height="400px" width="400px" class="img-responsive" alt="Click to view full image" onclick="showModal(this)">
+                <p style="text-align: center;background-color: black;opacity: 80%;color: #f1f1f1;"><strong>Query For Sales</strong></p>
+              </div>
+            </div>
+            <!--sql codes-->
+            <div>
+              <h3>Data Cleansing & Transformation (SQL)</h3>
+              <div>
+                <h3>DIM_Product</h3>
+              <div class="sql-code-block">
+                <pre>
+                    SELECT  p.[ProductKey] as [Product Key]
+                          ,p.[ProductAlternateKey] as [Item Code]
+                          --,p.[ProductSubcategoryKey] as [Product Sub Key]
+                          --,[WeightUnitMeasureCode]
+                          --,[SizeUnitMeasureCode]
+                          ,p.[EnglishProductName] as [Product Name]
+                          ,psc.EnglishProductCategoryName as [Category Name]
+                          ,pc.EnglishProductSubcategoryName as [Product Sub Category]
+                          --,[SpanishProductName]
+                          --,[FrenchProductName]
+                          --,[StandardCost]
+                          --,[FinishedGoodsFlag]
+                          ,p.[Color] as [Product Color]
+                          --,[SafetyStockLevel]
+                          --,[ReorderPoint]
+                          ,p.[ListPrice] as [List Price]
+                          ,p.[Size] as [Product Size]
+                          --,[SizeRange]
+                          --,[Weight]
+                          --,[DaysToManufacture]
+                          ,p.[ProductLine] as [Product Line]
+                          --,[DealerPrice]
+                          --,[Class]
+                          --,[Style]
+                          ,p.[ModelName] as [Model Name]
+                          --,[LargePhoto]
+                          ,p.[EnglishDescription] as [Product Description]
+                          --,[FrenchDescription]
+                          --,[ChineseDescription]
+                          --,[ArabicDescription]
+                          --,[HebrewDescription]
+                          --,[ThaiDescription]
+                          --,[GermanDescription]
+                          --,[JapaneseDescription]
+                          --,[TurkishDescription]
+                          --,[StartDate]
+                          --,[EndDate]
+                          ,ISNULL (p.Status, 'outdated') as [Product Status]
+                      FROM 
+                      [AdventureWorksDW2022].[dbo].[DimProduct] as p
+                      LEFT JOIN [AdventureWorksDW2022].[dbo].[DimProductSubcategory] as pc on p.ProductSubcategoryKey = pc.ProductCategoryKey 
+                      LEFT JOIN [AdventureWorksDW2022].[dbo].[DimProductCategory] as psc on pc.ProductCategoryKey = psc.ProductCategoryKey
+                      ORDER By p.ProductKey ASC
+                </pre>
+              </div>
+              </div>
+
+              <div>
+                <h3>DIM_Customer</h3>
+              <div class="sql-code-block">
+                <pre>
+                      SELECT  c.[CustomerKey] as [Customer Key]
+                        --,[GeographyKey]
+                        --,[CustomerAlternateKey]
+                        --,[Title]
+                        ,c.[FirstName] as [First Name]
+                        --,[MiddleName]
+                        ,c.[LastName] as [Last Name]
+                        ,c.[FirstName]+ ' ' +[LastName] as [Full Name]
+                        --,[NameStyle]
+                        --,[BirthDate]
+                        --,[MaritalStatus]
+                        --,[Suffix]
+                        ,CASE c.[Gender] when 'M' then 'Male' when 'F' then 'Female' END as gender
+                        --,[EmailAddress]
+                        --,[YearlyIncome]
+                        --,[TotalChildren]
+                        --,[NumberChildrenAtHome]
+                        --,[EnglishEducation]
+                        --,[SpanishEducation]
+                        --,[FrenchEducation]
+                        --,[EnglishOccupation]
+                        --,[SpanishOccupation]
+                        --,[FrenchOccupation]
+                        --,[HouseOwnerFlag]
+                        --,[NumberCarsOwned]
+                        --,[AddressLine1]
+                        --,[AddressLine2]
+                        --,[Phone]
+                        ,c.[DateFirstPurchase]
+                        --,[CommuteDistance]
+                        ,g.City
+                      FROM [AdventureWorksDW2022].[dbo].[DimCustomer] as c
+                      LEFT JOIN [AdventureWorksDW2022].[dbo].[DimGeography] as g on c.GeographyKey = g.GeographyKey
+                      order by c.CustomerKey ASC
+            
+                </pre>
+              </div>
+              </div>
+
+              <div>
+                <h3>DIM_Calender</h3>
+              <div class="sql-code-block">
+                <pre>
+                    SELECT 
+                    [DateKey], 
+                    [FullDateAlternateKey] AS Date, 
+                    --[DayNumberOfWeek], 
+                    [EnglishDayNameOfWeek] AS Day, 
+                    --[SpanishDayNameOfWeek], 
+                    --[FrenchDayNameOfWeek], 
+                    --[DayNumberOfMonth], 
+                    --[DayNumberOfYear], 
+                    --[WeekNumberOfYear],
+                    [EnglishMonthName] AS Month, 
+                    Left([EnglishMonthName], 3) AS MonthShort,   
+                    --[SpanishMonthName], 
+                    --[FrenchMonthName], 
+                    [MonthNumberOfYear] AS MonthNo, 
+                    [CalendarQuarter] AS Quarter, 
+                    [CalendarYear] AS Year --[CalendarSemester], 
+                    --[FiscalQuarter], 
+                    --[FiscalYear], 
+                    --[FiscalSemester] 
+                  FROM  
+                    [AdventureWorksDW2022].[dbo].[DimDate]
+                    Where [CalendarYear] >= YEAR(GETDATE())-2                
+            
+                </pre>
+              </div>
+              </div>
+
+              <div>
+                <h3>Fact_Sales</h3>
+              <div class="sql-code-block">
+                <pre>
+                    SELECT [ProductKey]
+                    ,[OrderDateKey]
+                    ,[DueDateKey]
+                    ,[ShipDateKey]
+                    ,[CustomerKey]
+                    --,[PromotionKey]
+                    --,[CurrencyKey]
+                    --,[SalesTerritoryKey]
+                    ,[SalesOrderNumber]
+                    --,[SalesOrderLineNumber]
+                    --,[RevisionNumber]
+                    ,[OrderQuantity]
+                    ,[UnitPrice]
+                    --,[ExtendedAmount]
+                    --,[UnitPriceDiscountPct]
+                    --,[DiscountAmount]
+                    --,[ProductStandardCost]
+                    --,[TotalProductCost]
+                    ,[SalesAmount]
+                    --,[TaxAmt]
+                    --,[Freight]
+                    --,[CarrierTrackingNumber]
+                    --,[CustomerPONumber]
+                    --,[OrderDate]
+                    --,[DueDate]
+                    --,[ShipDate]
+                    FROM [AdventureWorksDW2022].[dbo].[FactInternetSales]
+                    WHERE LEFT (OrderDateKey,4) >= YEAR(GETDATE())-2
+                    ORDER BY OrderDateKey               
+            
+                </pre>
+              </div>
+              </div>
+
+
+            </div>
+            <!--sql codes-->
+
+            <div>
+              <h3>Data Modeling</h3>
+              <p style="font-size: 16px;font-family: 'Ariel', sans-serif;">Below is a screenshot of the data model after the cleansed and prepared tables were imported into Power BI. <br>This data model illustrates how the FACT_Budget table has been linked to the FACT_InternetSales table, <br>as well as the relevant DIM tables.</p>
+              <div >
+                <img src="./assets/images/work1/dataModel.png" height="950px" width="900px" class="img-responsive" alt="Click to view full image">
+              </div>
+            </div>
+
+            <div class="container-hover">
+              <div class="box">
+                <img src="./assets/images/work1/dataModel.png">
+              </div>
+            </div>
+            
+            <div class="content">
+              <h2><strong>Objective</strong></h2>
+              <p>The objective of this project is to analyze sales data to gain insights from two perspectives: <strong>customer demographics</strong> and <strong>product categories</strong>. It aims to identify trends in <strong>customer purchasing behavior</strong> and <strong>segment customers</strong> based on key attributes. Additionally, the project will evaluate <strong>product performance</strong>, highlighting <strong>top-selling items</strong> and <strong>seasonal patterns</strong>. The goal is to provide <strong>actionable insights</strong> to optimize <strong>marketing strategies</strong> and <strong>inventory management</strong>. Ultimately, the project will support <strong>data-driven decision-making</strong> for enhanced sales performance.</p>
+      
+              <h2><strong>Methodology</strong></h2>
+      
+              <br><h2><strong>Data Transformation:</strong></h2>
+              <p>The data transformation process involved the following steps:</p>
+              <ul>
+                  <li><strong>Data Import:</strong> The raw data was imported into <strong>SQL Server Management Studio (SSMS)</strong> for analysis.</li>
+                  <li><strong>Column Removal:</strong> Unnecessary columns that did not contribute to the analysis were removed to streamline the dataset.</li>
+                  <li><strong>Handling Null Values:</strong> Missing values were addressed by filling NULL entries with appropriate defaults or calculated values, ensuring completeness and accuracy.</li>
+                  <li><strong>Data Filtering:</strong> Filters were applied to extract only the sales data from the last <strong>two years</strong>, relative to the current date, to focus on <strong>recent performance</strong>.</li>
+                  <li><strong>Data Preparation:</strong> These steps ensured the dataset was <strong>clean</strong>, <strong>relevant</strong>, and ready for further analysis.</li>
+              </ul>
+      
+              <h2><strong>Data Modeling and Measures:</strong></h2>
+              <ul>
+                  <li><strong>Measures Creation using DAX:</strong> Created DAX measures to calculate <strong>Total Sales</strong>, <strong>Total Budget</strong>, and <strong>Profit/Loss</strong>.</li>
+                  <li><strong>KPI Creation:</strong> Designed <strong>Key Performance Indicators (KPIs)</strong> such as <strong>Total Sales</strong> to track overall sales performance.</li>
+                  <li><strong>Dynamic Filtering:</strong> KPIs were made filterable by various dimensions, including <strong>Year</strong>, <strong>Month</strong>, <strong>Product</strong>, <strong>Category</strong>, and <strong>Sub-category</strong> to allow detailed, segmented analysis.</li>
+                  <li><strong>Product Category Analysis:</strong> Developed KPIs to analyze sales by <strong>Product Category</strong> and <strong>Sub-category</strong>, helping to identify performance trends at different levels of the product hierarchy.</li>
+                  <li><strong>Top Selling Products:</strong> Created KPIs to display the <strong>Top 10 Selling Products</strong>, offering insights into the highest-performing products.</li>
+              </ul>
+      
+              <h2><strong>1. Visualization Creation:</strong></h2>
+              <ul>
+                  <li><strong>Tool Used:</strong> Visualizations were created using <strong>Power BI</strong> to build interactive dashboards.</li>
+                  <li><strong>Visualizations:</strong>
+                      <ul>
+                          <li><strong>Line Charts</strong> were used to display sales trends over time.</li>
+                          <li><strong>Bar Graphs</strong> were used to compare sales performance across products, categories, and other dimensions.</li>
+                          <li><strong>Donut Charts</strong> were used to show the proportion of sales across different segments.</li>
+                          <li><strong>Pie Charts</strong> were employed to visualize the distribution of sales by product category.</li>
+                          <li>A <strong>Matrix Table</strong> was included to provide a detailed view of sales data across multiple dimensions (e.g., year, month, product).</li>
+                      </ul>
+                  </li>
+                  <li><strong>Interactive Filters:</strong> Filters were added to allow users to dynamically drill down and analyze data by year, month, product, and category, enabling flexible data exploration.</li>
+                  <li><strong>Goal:</strong> The objective was to present the data in an easily interpretable format, supporting <strong>quick decision-making</strong> and offering <strong>actionable insights</strong>.</li>
+              </ul>
+      
+              <h2><strong>2. Dashboard Development:</strong></h2>
+              <ul>
+                  <li><strong>Dashboards:</strong>
+                      <ul>
+                          <li><strong>Sales Overview Dashboard:</strong> Provided a high-level view of <strong>total sales</strong>, <strong>profit/loss</strong>, and <strong>key performance metrics</strong>.</li>
+                          <li><strong>Customer Details Dashboard:</strong> Focused on <strong>customer segments</strong>, <strong>demographics</strong>, and <strong>purchasing behaviors</strong>, offering insights into customer-driven sales patterns.</li>
+                          <li><strong>Product Details Dashboard:</strong> Showed product-level performance, highlighting <strong>top-selling products</strong>, <strong>product categories</strong>, and <strong>sales trends</strong>.</li>
+                      </ul>
+                  </li>
+                  <li><strong>Interactive Features:</strong> Dashboards were designed to be filterable, allowing users to drill down into specific details by <strong>year</strong>, <strong>month</strong>, <strong>category</strong>, <strong>product</strong>, and <strong>customer segment</strong>.</li>
+                  <li><strong>Goal:</strong> The goal was to create comprehensive, <strong>user-friendly dashboards</strong> that provided quick insights into different aspects of the sales process, enabling <strong>data-driven decision-making</strong>.</li>
+              </ul>
+          </div>
+            <!--for slider-->
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            
+            <div class="w3-content" style="padding-top: 50px ;max-width:800px">
+              <!-- Images for the slideshow -->
+              <img class="mySlides" src="./assets/images/work1/sales.png" style="width:100%">
+              <img class="mySlides" src="./assets/images/work1/customer.png" style="width:100%">
+              <img class="mySlides" src="./assets/images/work1/product.png" style="width:100%">
+            </div>
+            
+            <!-- Navigation and dots -->
+            <div class="w3-center">
+              <div class="w3-section">
+                <!-- Buttons to navigate between slides -->
+                <button class="w3-button w3-light-grey" onclick="plusDivs(-1)">❮ Prev</button>
+                <button class="w3-button w3-light-grey" onclick="plusDivs(1)">Next ❯</button>
+              </div>
+            
+              <!-- Dots to directly navigate to a specific slide -->
+              <button class="w3-button demo" onclick="currentDiv(1)">1</button>
+              <button class="w3-button demo" onclick="currentDiv(2)">2</button>
+              <button class="w3-button demo" onclick="currentDiv(3)">3</button>
+            </div>
+            <script>
+              var slideIndex = 1;
+              showDivs(slideIndex);
+              
+              function plusDivs(n) {
+                showDivs(slideIndex += n);
+              }
+              
+              function currentDiv(n) {
+                showDivs(slideIndex = n);
+              }
+              
+              function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("demo");
+                if (n > x.length) {slideIndex = 1}    
+                if (n < 1) {slideIndex = x.length}
+                for (i = 0; i < x.length; i++) {
+                  x[i].style.display = "none";  
+                }
+                for (i = 0; i < dots.length; i++) {
+                  dots[i].className = dots[i].className.replace(" w3-red", "");
+                }
+                x[slideIndex-1].style.display = "block";  
+                dots[slideIndex-1].className += " w3-red";
+              }
+              </script>
+            
+            <!--for slider-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal to display full image -->
+  <div id="imageModal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="fullImage">
+  </div>
+
+  <script>
+    // Function to show the modal and display the full-size image
+    function showModal(imageElement) {
+    var modal = document.getElementById("imageModal");
+    var fullImage = document.getElementById("fullImage");
+    
+    // Show the modal
+    modal.style.display = "block";
+    
+    // Set the source of the full image
+    fullImage.src = imageElement.src;
+
+    // Adjust the size of the full image
+    fullImage.style.width = "50%"; // Set the width to 80% of the modal's width
+    fullImage.style.height = "90%"; // Maintain aspect ratio
+
+     // Center the image in the modal (if the modal uses flexbox)
+     modal.style.display = "flex";                // Make modal a flex container
+    modal.style.justifyContent = "center";       // Center the content horizontally
+    modal.style.alignItems = "center"; 
+}
+
+    // Close the modal when the close button is clicked
+    var closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function () {
+      var modal = document.getElementById("imageModal");
+      modal.style.display = "none";
+    }
+
+    // Close the modal when the user clicks anywhere outside the modal
+    window.onclick = function (event) {
+      var modal = document.getElementById("imageModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+  <!-- <footer class="footer-container text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <p>© UNTITLED | Website created with <a href="http://www.mashup-template.com/" title="Create website with free html template">Mashup Template</a>/<a href="https://www.unsplash.com/" title="Beautiful Free Images">Unsplash</a></p>
+        </div>
+      </div>
+    </div>
+  </footer> -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+       navActivePage();
+    });
+  </script>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+
+  <script type="text/javascript" src="./main.70a66962.js"></script>
+</body>
+
+</html>
